@@ -6,10 +6,22 @@ export default class ItemsController {
     const { page, perPage, ...input } = request.qs()
     const items = await Item.query()
       .apply((scopes) => scopes.filtration(input))
-      .join('uoms', 'uoms.id', '=', 'items.uom_id')
-      .select('uom.name as uom', 'items.*')
+      .preload('uom')
+      .preload('purchaseUom')
       .paginate(page, perPage)
-    return items
+
+    const serializedItems = items.serialize({
+      fields: ['id', 'name', 'uom', 'purchaseUom'],
+      relations: {
+        uom: {
+          fields: ['name'],
+        },
+        purchaseUom: {
+          fields: ['name'],
+        },
+      },
+    })
+    return serializedItems
   }
 
   public async store({ request, response }: HttpContextContract) {
