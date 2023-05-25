@@ -27,6 +27,7 @@ Route.get('/', () => {
 })
 Route.group(() => {
   Route.resource('items', 'ItemsController').apiOnly()
+  Route.resource('partners', 'PartnersController').apiOnly()
 }).prefix('/api')
 
 Route.group(() => {
