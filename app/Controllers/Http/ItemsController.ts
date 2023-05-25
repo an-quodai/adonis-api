@@ -4,7 +4,11 @@ import Item from 'App/Models/Item'
 export default class ItemsController {
   public async index({ request }: HttpContextContract) {
     const { page, perPage, ...input } = request.qs()
-    const items = await Item.filter(input).paginate(page, perPage)
+    const items = await Item.query()
+      .apply((scopes) => scopes.filtration(input))
+      .join('uoms', 'uoms.id', '=', 'items.uom_id')
+      .select('uom.name as uom', 'items.*')
+      .paginate(page, perPage)
     return items
   }
 

@@ -1,9 +1,10 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, BelongsTo, belongsTo, column } from '@ioc:Adonis/Lucid/Orm'
 import { ItemType } from './ItemType'
 import ItemFilter from 'App/Models/Filters/ItemFilter'
 import { compose } from '@ioc:Adonis/Core/Helpers'
 import { Filterable } from '@ioc:Adonis/Addons/LucidFilter'
+import Uom from './Uom'
 
 export default class Item extends compose(BaseModel, Filterable) {
   public static $filter = () => ItemFilter
@@ -13,6 +14,18 @@ export default class Item extends compose(BaseModel, Filterable) {
 
   @column()
   public name: string
+
+  @column()
+  public uomId: number
+
+  @belongsTo(() => Uom)
+  public uom: BelongsTo<typeof Uom>
+
+  @column()
+  public purchaseUomId: number
+
+  @belongsTo(() => Uom)
+  public purchaseUom: BelongsTo<typeof Uom>
 
   @column()
   public price: number
