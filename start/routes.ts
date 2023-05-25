@@ -26,9 +26,7 @@ Route.get('/', () => {
   return { hello: 'world' }
 })
 Route.group(() => {
-  Route.group(() => {
-    Route.get('/', 'ItemsController.index')
-  }).prefix('/items')
+  Route.resource('items', 'ItemsController').apiOnly()
 }).prefix('/api')
 
 Route.group(() => {
