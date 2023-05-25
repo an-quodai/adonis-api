@@ -24,7 +24,7 @@ export default class Item extends compose(BaseModel, Filterable) {
   public properties: object
 
   @column()
-  public category: string
+  public category_id: number
 
   @column()
   public type: ItemType
