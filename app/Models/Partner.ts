@@ -1,8 +1,9 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, HasMany, column, hasMany } from '@ioc:Adonis/Lucid/Orm'
 import { Filterable } from '@ioc:Adonis/Addons/LucidFilter'
 import PartnerFilter from './Filters/PartnerFilter'
 import { compose } from '@ioc:Adonis/Core/Helpers'
+import SaleOrder from './SaleOrder'
 
 export default class Partner extends compose(BaseModel, Filterable) {
   public static $filter = () => PartnerFilter
@@ -23,16 +24,21 @@ export default class Partner extends compose(BaseModel, Filterable) {
   public email: string
 
   @column()
-  public country_code: string
+  public countryCode: string
 
   @column()
-  public is_supplier: boolean
+  public isSupplier: boolean
 
   @column()
-  public is_customer: boolean
+  public isCustomer: boolean
 
   @column()
-  public company_id: number
+  public companyId: number
+
+  @hasMany(() => SaleOrder, {
+    foreignKey: 'customerId',
+  })
+  public saleOrders: HasMany<typeof SaleOrder>
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
