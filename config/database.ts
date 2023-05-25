@@ -47,9 +47,6 @@ const databaseConfig: DatabaseConfig = {
       },
       healthCheck: true,
       debug: false,
-      options: {
-        encrypt: true,
-      },
     },
   },
 }
