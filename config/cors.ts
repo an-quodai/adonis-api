@@ -48,7 +48,7 @@ const corsConfig: CorsConfig = {
   */
   origin: Env.get('ORIGIN')
     ? Env.get('ORIGIN')
-    : ['http://localhost:3000', 'http://localhost:3333'],
+    : ['http://localhost:3000', 'http://localhost:3333', 'http://localhost:5173'],
 
   /*
   |--------------------------------------------------------------------------

@@ -11,7 +11,7 @@ export default class ItemsController {
       .paginate(page, perPage)
 
     const serializedItems = items.serialize({
-      fields: ['id', 'name', 'uom', 'purchaseUom'],
+      fields: ['id', 'name', 'uom', 'purchaseUom', 'price', 'cost', 'type', 'category'],
       relations: {
         uom: {
           fields: ['name'],
@@ -35,11 +35,14 @@ export default class ItemsController {
     return item
   }
 
-  public async update({ params, request }: HttpContextContract) {
+  public async update({ params, request, response }: HttpContextContract) {
     const payload = request.body()
     const item = await Item.findOrFail(params.id)
     item.merge(payload)
-    await item.save()
-    return item
+    if (item.$isDirty) {
+      await item.save()
+      return item
+    }
+    return response.noContent()
   }
 }
