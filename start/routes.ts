@@ -28,6 +28,24 @@ Route.get('/', () => {
 Route.group(() => {
   Route.resource('items', 'ItemsController').apiOnly()
   Route.resource('partners', 'PartnersController').apiOnly()
+
+  Route.group(() => {
+    Route.get('/', 'SaleOrdersController.index')
+    Route.get('/:id', 'SaleOrdersController.show')
+    Route.get('/:id/lines', 'SaleOrderLinesController.getNoProductionSaleLines')
+    Route.post('/', 'SaleOrdersController.store')
+    Route.put('/:id', 'SaleOrdersController.update')
+    Route.delete('/:id', 'SaleOrdersController.destroy')
+  }).prefix('/sale-orders')
+
+  Route.group(() => {
+    Route.get('/', 'ProductionOrdersController.index')
+    Route.get('/:id', 'ProductionOrdersController.show')
+    Route.post('/', 'ProductionOrdersController.store')
+    Route.post('/from-sale', 'ProductionOrdersController.createFromSale')
+    Route.put('/:id', 'ProductionOrdersController.update')
+    Route.delete('/:id', 'ProductionOrdersController.destroy')
+  }).prefix('/production-orders')
 }).prefix('/api')
 
 Route.group(() => {
