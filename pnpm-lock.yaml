@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 dependencies:
   '@adonisjs/auth':
     specifier: ^8.2.3
@@ -88,8 +92,8 @@ devDependencies:
     specifier: ^3.2.2
     version: 3.2.3
   youch-terminal:
-    specifier: ^2.2.0
-    version: 2.2.0
+    specifier: ^2.2.2
+    version: 2.2.2
 
 packages:
 
@@ -626,7 +630,7 @@ packages:
       '@poppinss/cliui': 3.0.5
       jest-diff: 29.5.0
       youch: 3.2.3
-      youch-terminal: 2.2.0
+      youch-terminal: 2.2.2
     dev: true
 
   /@japa/preset-adonis@1.2.0(@adonisjs/core@5.9.0)(@japa/runner@2.5.1)(openapi-types@12.1.0):
@@ -5486,8 +5490,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /youch-terminal@2.2.0:
-    resolution: {integrity: sha512-LLYtvG/4XoRO/vhf2eBkzT6dI1hWliLSp7NuXRKsvBAITuIxODS61X7AQOHl5Aaf8oquS9JlHSpjTFjX140XKA==}
+  /youch-terminal@2.2.2:
+    resolution: {integrity: sha512-JfVAsD0r88+vWVz+Im6bMk+c7gErDp1lq6Z1Na5LAyPZTwhB3VgO6HUQsm83I217mRFSuwVwEpnvwkK/TDTNhQ==}
     dependencies:
       kleur: 4.1.5
       string-width: 4.2.3
